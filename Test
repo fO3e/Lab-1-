@@ -1,0 +1,148 @@
+package edu.course.lab01;
+
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+class CourseToolkitTest {
+
+    @Test
+    void returnsTrueForEvenNumber() {
+        boolean result = CourseToolkit.isEven(8);
+
+        assertTrue(result);
+    }
+
+    @Test
+    void returnsFalseForOddNumber() {
+        boolean result = CourseToolkit.isEven(7);
+
+        assertFalse(result);
+    }
+
+    @Test
+    void returnsTrueForZero() {
+        boolean result = CourseToolkit.isEven(0);
+
+        assertTrue(result);
+    }
+
+    @Test
+    void returnsTrueForNegativeEvenNumber() {
+        boolean result = CourseToolkit.isEven(-8);
+
+        assertTrue(result);
+    }
+
+    @Test
+    void returnsFalseWhenNumberIsLessThanTwo() {
+        boolean result = CourseToolkit.isPrime(1);
+
+        assertFalse(result);
+    }
+
+    @Test
+    void returnsTrueForTwo() {
+        boolean result = CourseToolkit.isPrime(2);
+
+        assertTrue(result);
+    }
+
+    @Test
+    void returnsTrueForPrimeNumber() {
+        boolean result = CourseToolkit.isPrime(17);
+
+        assertTrue(result);
+    }
+
+    @Test
+    void returnsFalseForCompositeNumber() {
+        boolean result = CourseToolkit.isPrime(12);
+
+        assertFalse(result);
+    }
+
+    @Test
+    void returnsFalseForSquareOfPrimeNumber() {
+        boolean result = CourseToolkit.isPrime(49);
+
+        assertFalse(result);
+    }
+
+    @Test
+    void returnsTrueForPalindrome() {
+        boolean result = CourseToolkit.isPalindrome("level");
+
+        assertTrue(result);
+    }
+
+    @Test
+    void returnsFalseForNonPalindrome() {
+        boolean result = CourseToolkit.isPalindrome("java");
+
+        assertFalse(result);
+    }
+
+    @Test
+    void palindromeComparisonIsCaseSensitive() {
+        boolean result = CourseToolkit.isPalindrome("Level");
+
+        assertFalse(result);
+    }
+
+    @Test
+    void throwsExceptionForNullText() {
+        assertThrows(
+                IllegalArgumentException.class,
+                () -> CourseToolkit.isPalindrome(null)
+        );
+    }
+
+    @Test
+    void returnsFractionalAverage() {
+        double result = CourseToolkit.average(
+                new int[]{1, 2, 3, 4}
+        );
+
+        assertEquals(2.5, result);
+    }
+
+    @Test
+    void returnsAverageForNegativeNumbers() {
+        double result = CourseToolkit.average(
+                new int[]{-2, -3, -4}
+        );
+
+        assertEquals(-3.0, result);
+    }
+
+    @Test
+    void averageDoesNotModifyInputArray() {
+        int[] values = {2, 4, 6};
+        int[] original = {2, 4, 6};
+
+        CourseToolkit.average(values);
+
+        assertArrayEquals(original, values);
+    }
+
+    @Test
+    void throwsExceptionForEmptyArray() {
+        assertThrows(
+                IllegalArgumentException.class,
+                () -> CourseToolkit.average(new int[]{})
+        );
+    }
+
+    @Test
+    void throwsExceptionForNullArray() {
+        assertThrows(
+                IllegalArgumentException.class,
+                () -> CourseToolkit.average(null)
+        );
+    }
+}
